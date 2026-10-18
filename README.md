@@ -1,16 +1,22 @@
 # daring — Daring Dozen campaign archive
 
-Private source repository for the Daring Dozen campaign browser, migrated from `Graybark/Doldrum`.
+Public source repository for the Daring Dozen campaign browser, migrated from `Graybark/Doldrum`.
 
-## GitHub Pages publication
+## GitHub Pages
 
-The owner requested public Pages publication after being informed that the website is not link-restricted. The repository must remain private. The intended site address is **https://graybark.github.io/daring/**, with Session 133 at **https://graybark.github.io/daring/#133**. A successful Pages deployment is required before these addresses work.
+**Website:** https://graybark.github.io/daring/
 
-**The website is public, not private or password-protected.** Anyone can open, guess, or share its address. Search-engine `noindex` directives discourage indexing by cooperating engines; they are not access control. All campaign material already embedded in the browser is publicly readable, including any unrevealed material in older sessions and reference entries.
+**Session 133:** https://graybark.github.io/daring/#133
 
-The `Build and publish archive` workflow rebuilds, checks, and deploys the document when its source files change on `main`. It publishes only `_site/index.html`, `_site/favicon.svg`, and `_site/.nojekyll`. The separate Markdown files, source PDF, Python code, and separate Session 133 GM-note file are **not** deployed. Source links in the published browser point back to the private repository and require authorized GitHub access.
+The owner intentionally made this repository public and explicitly approved proceeding with both the repository and website public on 18 October 2026.
 
-Under repository **Settings → Pages → Build and deployment**, the source must be **GitHub Actions**. Pages from a private personal repository requires GitHub Pro or another eligible plan. Do not make this repository public to get around that requirement. The workflow uses GitHub's official configure/upload/deploy actions; initial Pages enablement may require a repository administrator to select the setting.
+The website and repository are **public, not private or password-protected**. All material embedded in the browser is readable, including unrevealed material in older sessions and reference entries. Source files and the separate GM notes are also accessible in this public repository. Search-engine `noindex` directives are retained, but do not provide access control.
+
+The `Build and publish archive` workflow rebuilds, checks, and deploys the browser whenever its source files change on `main`, and can be run manually from Actions. It verifies that the deployed archive includes Session 133. The latest Actions run is the publication status record.
+
+Only `_site/index.html`, `_site/favicon.svg`, and `_site/.nojekyll` are deployed to Pages. Separate Markdown, the source PDF, Python code, and the separate Session 133 GM-note file are not copied into the Pages artifact; they remain publicly accessible on GitHub. Source links in the published browser point to this repository.
+
+Under repository **Settings → Pages → Build and deployment**, Source is **GitHub Actions**. The workflow uses GitHub's official configure/upload/deploy actions and no longer requires the source repository to be private.
 
 ## Editing and rebuilding
 
@@ -29,21 +35,21 @@ python Codex/test_session_browser.py
 python Codex/build_pages.py
 ```
 
-The Pages staging step does not modify the offline document's content or design. It adjusts source links, removes misleading private-site labels from the published version, and retains search-indexing exclusions.
+The Pages staging step preserves the offline document's content and design. It adjusts source links, removes misleading private-site labels from the published version, and retains search-indexing exclusions.
 
 ## Campaign continuity
 
 - Keep played events separate from preparation. Mark uncertain details **To confirm**.
 - Session 133's player-facing record is [DaringDozen133.md](Daring%20Dozen/Sessions/DaringDozen133.md).
-- Its separate private GM record is [sessions/gm/session-133.md](sessions/gm/session-133.md). That file is not embedded in Session 133's player recap or deployed to Pages.
+- Its separate GM record is [sessions/gm/session-133.md](sessions/gm/session-133.md). That file is not embedded in Session 133's player recap or deployed to Pages, but it is publicly accessible in this repository.
 - The complete browser is a GM archive, not a player-safe recap. Public publication does not change that content distinction.
 
 ## Migration scope
 
-[Migration record](MIGRATION.md) identifies the verified source snapshot. The original Doldrum files were preserved, not deleted. This repository is a separate copy; edits are not automatically exchanged between the two repositories or with a Windows/OneDrive folder. Edits made here are automatically rebuilt for this site's deployment. Windows synchronization scripts were not carried over.
+[Migration record](MIGRATION.md) identifies the verified source snapshot. The original Doldrum files were preserved, not deleted. This repository is a separate copy; edits are not automatically exchanged between the two repositories or with a Windows/OneDrive folder. Edits made here are automatically rebuilt and published through this site's workflow. Windows synchronization scripts were not carried over. The publishing workflow acts only on `Graybark/daring`; it does not change the visibility or files of `Graybark/Doldrum` or `Graybark/spell-balance`.
 
 ## Documentation
 
-- [Creating a GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)
+- [Configuring a GitHub Pages publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 - [Private Pages access control](https://docs.github.com/en/enterprise-cloud%40latest/pages/getting-started-with-github-pages/changing-the-visibility-of-your-github-pages-site)
 - [Search-engine noindex directives](https://developers.google.com/search/docs/crawling-indexing/block-indexing)
