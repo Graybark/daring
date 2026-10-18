@@ -6,8 +6,8 @@
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
-<meta name="source-revision" content="f90504b729471e7b366f6f80b39bf83404b94bf7">
-<meta name="description" content="GM homebrew: Shar’s Favored and the Unmoored Anchor. Selectable, print-ready 5.5e-style stat blocks with separate lair rules.">
+<meta name="encounter-revision" content="2.6">
+<meta name="description" content="Shar’s Favored and the Unmoored Anchor: 5.5e homebrew stat blocks, lair actions, and vault controls.">
 <title>Shar’s Favored — Nightwalker &amp; Far Realm Anchor</title>
 <style>
 :root{color-scheme:light;--paper:#f5f3ee;--ink:#101010;--red:#5b160c;--muted:#727d82;--physical:#ded4cc;--mental:#d0caca}
@@ -17,7 +17,7 @@
 </style>
 </head>
 <body>
-<header class="page-header"><p>DOLDRUM · GM MATERIAL · REVISION 2.5</p><nav aria-label="Page sections"><a href="#phase-i">Phase I</a><a href="#phase-ii">Phase II</a><a href="#lair-effects">Lair effects</a><button type="button" onclick="window.print()">Print</button></nav></header>
+<header class="page-header"><p>DOLDRUM · GM MATERIAL · REVISION 2.6</p><nav aria-label="Page sections"><a href="#phase-i">Phase I</a><a href="#phase-ii">Phase II</a><a href="#lair-actions">Lair actions</a><a href="#devices">Devices</a><button type="button" onclick="window.print()">Print</button></nav></header>
 <main>
 <article class="statblock" id="phase-i" aria-labelledby="phase-i-title"><h2 id="phase-i-title">Shar’s Favored</h2><div class="stat-columns"><div class="stat-meta"><p><em>Huge Undead, Neutral Evil</em></p>
 <p><strong>AC</strong> 24 <span class="initiative"><strong>Initiative</strong> +11 (21)</span></p>
@@ -82,50 +82,45 @@
 <p><strong class="feature-name">Impossible Passage.</strong> The Anchor magically teleports up to 40 feet to an unoccupied space it can see and makes one Unmaking Tendril attack. It can’t use this option again until the start of its next turn.</p>
 <p><strong class="feature-name">Fractured Perception.</strong> <em>Wisdom Saving Throw:</em> DC 24, one creature the Anchor can see within 90 feet. <em>Failure:</em> 27 (6d8) Psychic damage, and the target can’t take Reactions until the end of its next turn. <em>Success:</em> Half damage only. This effect is magical. It can’t use this option again until the start of its next turn.</p>
 </div></article>
-<p class="draft"><b>Homebrew · proposed encounter, not played.</b> CR 30 is an unplaytested design target. Each phase has four independent Legendary Resistances. HP values are fixed.</p>
+<p class="draft"><b>Homebrew · proposed encounter, not played.</b> CR 30 is unplaytested. Four independent Legendary Resistances per phase.</p>
 <section class="encounter-notes" aria-labelledby="notes-title">
-<h2 id="notes-title">Encounter Text</h2>
-<p class="section-caption">Transformation and lair effects · separate from the creature stat blocks</p>
-<section id="the-anchor-opens"><h3>The Anchor Opens</h3><p>Replace Phase I with Phase II. Its HP maximum and current HP become <strong>350</strong>, minus any ongoing maximum-HP reductions. If that leaves a maximum of 0 or less, it is defeated. This is a form change, not healing; excess damage from the triggering hit doesn't carry over.</p>
-<p>Phase II starts with <strong>four fresh Legendary Resistances</strong> and Memory Collapse available. Unused Phase I resistances are discarded. Initiative, remaining Legendary Action uses, other ongoing effects, and machinery progress persist unless an effect's rules make it inapplicable. The Phase I aura ends; inflicted maximum-HP reductions remain.</p>
-<p>The transformation grants no extra turn, action, movement, or damage burst and refreshes no spent actions or Reactions. Later attacks in the triggering action resolve against Phase II. Fractures first appear at the start of the Anchor’s next normal turn. There is no third phase.</p>
-</section>
-<section id="lair-effects"><h3>Death Heart: Lair Effects and Controls</h3><p>Use three linked maintenance chambers with broad openings, shafts, handrails, and Total Cover. Place the fixed Nexus centrally, with the Regulator and Conduit about 40–60 feet away on different approaches. Keep an exit beyond the 240-foot tether. This remains Death Heart's crowded, gravityless interior, not an empty sphere.</p>
-<p><strong>Bound Manifestation (lair effect).</strong> While the center of the Anchor’s space is more than 240 feet from the fixed Nexus, its rifts end and it can’t use Spatial Fractures, Fold Space, or Impossible Passage. Within the tether, its rift centers and destinations for Fold Space and Impossible Passage must remain within 240 feet of the Nexus. The controls below modify these abilities further. These are arena rules, not additional creature traits or initiative-count lair actions.</p>
-<p><strong>Movement.</strong> Handrails allow travel at walking Speed without flight. Open-space movement follows the campaign's gravityless rules (<strong>To confirm</strong> where unspecified). Teleport destinations must be visible to the creature choosing them, unoccupied, and large enough for the target. Hazardous and unsupported destinations are allowed; resolve resulting environmental effects normally. If no legal destination exists, omit the teleport. Entering a rift on another creature’s turn causes no saving throw.</p>
-<h3>Operate a control</h3>
-<p>Within 5 feet of a device, use an Action to attempt a <strong>DC 23 Strength (Athletics), Dexterity using Thieves' Tools, or Intelligence (Arcana or Religion) check</strong>. A success stabilizes it. After a failure, the next Action spent operating that device stabilizes it automatically, even by another creature. Stabilization persists through both phases.</p>
-<p>Explain each device's function before combat; discovering the basic controls needs no check.</p>
-<table><thead><tr><th>Stabilized device</th><th>Benefit</th></tr></thead><tbody>
-<tr><td><strong>Ward Regulator</strong></td><td>Immediately activates a ward pulse. An adjacent creature can repeat the pulse as an Action, without a check.</td></tr>
-<tr><td><strong>Spatial Conduit</strong></td><td>Phase I's Step Through Shadow and Deathly Passage are limited to 20 feet. In Phase II, the rifts close and the Anchor can’t use Spatial Fractures.</td></tr>
-<tr><td><strong>Anchor Nexus</strong></td><td>The boss's AC becomes <strong>22</strong> in both phases. In Phase II, Fold Space and Impossible Passage are disabled. Normal movement remains available.</td></tr>
+<h2 id="notes-title">Death Heart</h2><p class="section-caption">Transformation, lair actions, and devices — outside the stat blocks</p>
+<section id="the-anchor-opens"><h3>The Anchor Opens</h3>
+<p>Replace Phase I with Phase II at <strong>350 HP</strong>, applying ongoing maximum-HP reductions; a maximum of 0 means defeat. This is a form change, not healing. Excess damage from the triggering hit is lost; subsequent attacks hit Phase II. Its aura ends, but inflicted maximum-HP reductions remain.</p>
+<p>Phase II receives <strong>four fresh Legendary Resistances</strong> and Memory Collapse ready. Other ongoing effects, Initiative, activated devices, and spent actions persist unless their rules say otherwise. No extra turn, attack, movement, damage burst, or refreshed Legendary Actions. Rifts begin on its next normal turn.</p></section>
+<section id="lair-actions"><h3>Lair Actions</h3>
+<p>In the vault, on <strong>Initiative 20 (losing ties)</strong>, the current form uses one option below. It can’t repeat an option on consecutive rounds or act while Incapacitated. Transformation grants no extra lair action. These magical effects count as that form’s damage.</p>
+<h4>Phase I — Shar’s Favored</h4>
+<p><strong class="feature-name">Negative Surge.</strong> <em>Constitution Saving Throw:</em> DC 26, each enemy in a 20-foot-radius Sphere centered on a point the Nightwalker can see within 120 feet. <em>Failure:</em> 22 (4d10) Necrotic damage. <em>Success:</em> Half damage.</p>
+<p><strong class="feature-name">Grasping Shadows.</strong> <em>Strength Saving Throw:</em> DC 26, up to three creatures the Nightwalker can see within 120 feet. <em>Failure:</em> The target is pulled up to 30 feet straight toward the Nightwalker along a clear path.</p>
+<h4>Phase II — The Unmoored Anchor</h4>
+<p><strong class="feature-name">Psychic Reverberation.</strong> <em>Wisdom Saving Throw:</em> DC 24, each enemy in a 20-foot-radius Sphere centered on a point the Anchor can see within 240 feet. <em>Failure:</em> 22 (4d10) Psychic damage. <em>Success:</em> Half damage.</p>
+<p><strong class="feature-name">Fold the Chamber.</strong> <em>Charisma Saving Throw:</em> DC 24, up to two creatures the Anchor can see within 240 feet. <em>Failure:</em> The Anchor teleports the target up to 60 feet to an unoccupied space it can see.</p></section>
+<section id="lair-effects"><h3>Vault Rules</h3>
+<p>Three connected, gravityless chambers; handrails, broad openings, and Total Cover. Place the Nexus centrally and the other devices 40–60 feet away. Keep an exit beyond the tether.</p>
+<p><strong>Tether.</strong> Beyond 240 feet from the Nexus, the Anchor’s rifts end and Spatial Fractures, Fold Space, and Impossible Passage are unavailable. Inside that radius, their rift centers and teleport destinations must also stay inside it. Measure from the center of the Anchor’s space.</p>
+<p><strong>Movement.</strong> Handrails permit walking-Speed travel. Teleport destinations must be visible to their chooser, unoccupied, and fit the target; hazards and unsupported spaces remain allowed. Without a legal destination, omit the teleport. Rifts trigger only on the affected creature’s own turn.</p></section>
+<section id="devices"><h3>Devices &amp; Sealing</h3>
+<p>Within 5 feet, spend <strong>one Action to activate a device</strong>. No check. It stays active for the encounter, across both phases.</p>
+<table><thead><tr><th>Device</th><th>While active</th></tr></thead><tbody>
+<tr><td><strong>Ward Regulator</strong></td><td>Phase I: suppresses Annihilating Aura. Phase II: the party and its allies take half Psychic damage within 30 feet of the Regulator. This is not Resistance. Life Eater remains active.</td></tr>
+<tr><td><strong>Spatial Conduit</strong></td><td>Phase I: Step Through Shadow and Deathly Passage are limited to 20 feet. Phase II: rifts close; Spatial Fractures is disabled.</td></tr>
+<tr><td><strong>Anchor Nexus</strong></td><td>AC becomes <strong>22</strong> in both phases. Phase II: Fold Space and Impossible Passage are disabled.</td></tr>
 </tbody></table>
-<p><strong>Ward pulse.</strong> Until the end of the boss's next turn: in Phase I, suppress Annihilating Aura; in Phase II, halve Psychic damage taken by creatures chosen by the operator while within 30 feet of the Regulator. This halving is not Resistance and is not bypassed by Overwhelming Psionics. Repeating a pulse refreshes its duration, not its strength. Pulses don't suppress Life Eater or repeat automatically on transformation.</p>
-<h3>Seal the manifestation</h3>
-<p>With all three devices stabilized and the Phase II Anchor <strong>Bloodied and within its tether</strong>, a creature at the Nexus can use an Action to begin sealing. A different creature at any control must spend an Action to finish before the Anchor’s next turn, while the requirements still hold. No checks or Concentration are required. Completion defeats the local manifestation; a missed window can be retried without losing stabilization.</p>
-<p>Alternatively, defeat Phase II by reducing it to 0 HP. Neither outcome automatically destroys the greater aberration or guarantees the Nightwalker’s survival.</p>
-</section>
-<details id="gm-notes"><summary>GM notes, continuity, and read-aloud</summary><p><strong>Life Eater is always active in Phase I.</strong> It applies whenever that form reduces a creature to 0 HP, regardless of damage type. Only <em>Wish</em> can revive the victim. Effects such as <em>Death Ward</em> that prevent reaching 0 HP resolve first. Phase II has no Life Eater. Make the lethal stakes known before combat.</p>
-<p><strong>Overwhelming damage.</strong> Overwhelming Necrosis applies to all Necrotic damage dealt by the Nightwalker; Overwhelming Psionics applies to all Psychic damage dealt by the Anchor, including Spatial Fractures. These traits ignore Resistance, not Immunity, and don’t bypass successful saving throws or <em>Death Ward</em>. Force damage and environmental damage are unaffected. The Regulator’s direct halving still works.</p>
-<p><strong>Environment.</strong> Keep the <a href="https://github.com/Graybark/Doldrum/blob/main/world/negative-plane.md">Negative Plane house rules</a>: Death Heart drains 1d6 Necrotic damage per minute without <em>Death Ward</em>, and none with it. Preserve that timer through combat. Environmental damage isn't the Nightwalker’s damage and doesn't trigger Life Eater. <em>Death Ward</em> doesn't grant general protection from the monster's aura. Breathing protection remains necessary. Entropic Rend's maximum-HP reduction and the environment's reduction retain their separate recovery rules.</p>
-<p><strong>Tactics.</strong> In Phase I, choose between frightening a target and teleporting with the Bonus Action; pull enemies toward the aura with Grasp. In Phase II, place one rift over enemies and the other near the Anchor or an environmental hazard. A failed save deals heavy damage and forcibly relocates the victim. The rifts aren’t travel shortcuts; stabilizing the Conduit shuts them down. When the Anchor becomes Bloodied, reveal the sealing opportunity.</p>
-<p><strong>Rules.</strong> These magical monster abilities aren't spells. Apply normal cover, damage resistance, teleportation prevention, and condition rules except where a listed feature overrides them. Truesight doesn't see through walls. Neither phase has additional unlisted reactions, immunities, or lair actions.</p>
-<p><strong>Difficulty.</strong> The baseline has 900 nominal HP and four independent Legendary Resistances per phase. Attack-only cycles of three normal attacks and three Legendary Action attacks deal 252/264 damage if all hit, before aura or rift damage; this is not an expected-DPR calculation. Life Eater permits revival only through <em>Wish</em>. Both phases are immune to Grappled, Petrified, and Restrained. Revision 2.5 expands each rift from a 10-foot to a 30-foot radius and placement range from 90 to 240 feet, permits hazardous teleport destinations, and adds Necrotic/Psychic resistance bypass. Rift damage remains 44 (8d10), and the Nexus tether expands to 240 feet. Other attacks, HP, and Legendary Resistance pools are unchanged. Balance remains untested.</p>
-<p>For a softer test, use 450/250 HP, two Legendary Action uses, and DCs 24/22 for Phases I/II; retain four resistances per phase. Current party readiness: <strong>To confirm</strong>. Use campaign advancement; an optional 310,000 XP award covers the entire encounter or successful seal, not each phase (<strong>To confirm</strong>).</p>
-<p><strong>Track:</strong> HP; current phase's four resistances; three Legendary Action uses and once-until-next-turn options; one recharge; fear/reaction-denial durations; three controls; any ward pulse; two rift tokens; any pending seal. No marks or psychic-echo tokens are used.</p>
-<p><strong>To confirm — source inconsistencies:</strong> This page uses Huge Undead and Huge Aberration from the edited overview; the Markdown's individual stat-block headings still say Gargantuan (Titan). The edited Entropic Rend no longer specifies when its maximum-HP reduction ends, and the edited Grasp of the Void no longer specifies a pull distance. Those omitted limits have not been reinserted.</p>
-<h3>Continuity — GM Spoilers</h3>
-<p>The <a href="https://github.com/Graybark/Doldrum/blob/main/planning/death-heart-after-the-nightwalker.md">Death Heart preparation</a> establishes Shar's Favored, his Far Realm influence, and the machinery-vault premise as GM material. The GM identifies the Nightwalker as the aberration's anchor. The <a href="https://github.com/Graybark/Doldrum/blob/main/sessions/summaries/2026-09-25-zzarakath-in-yaldas-clone.md">25 September played-session record</a> records the tuning fork's creation using Yalda's curse, not its powers.</p>
-<p><strong>To confirm:</strong> the aberration's identity; Shar's possible transfer ritual or betrayal; the Nightwalker’s agency and fate; whether safe separation is possible; broader machinery and tuning-fork powers; planar origin; encounter placement and party readiness. The local sealing rules establish none of those answers. This encounter is not a played recap.</p>
-<h3>Player-Facing Read-Aloud — Future Scenes Only</h3>
-<p><strong>First sight.</strong></p><blockquote><p>Between broken conduits stands an enormous darkness, its hands pressed against the machinery. Behind its ribs, another shape moves a moment later than it should.</p></blockquote>
-<p><strong>Transformation.</strong></p><blockquote><p>The shape tears apart, but nothing falls. The walls behind it turn, revealing a room that cannot be there. Your voices return from the opening, speaking words you have not said.</p></blockquote>
-<p><strong>Exposed connection.</strong></p><blockquote><p>The three machines fall into the same rhythm. Threads of darkness draw tight around a single point. The thing inside the silhouette seems unable to decide where it is.</p></blockquote>
-<p>Do not reveal GM secrets or assign characters new memories through these descriptions.</p>
-<p><strong>Rules references:</strong> <a href="https://www.dndbeyond.com/sources/dnd/br-2024/creature-stat-blocks">2024 stat blocks</a> · <a href="https://www.dndbeyond.com/sources/dnd/br-2024/rules-glossary">2024 Rules Glossary</a>. Original homebrew; not an official stat block.</p>
+<p><strong>Seal.</strong> Once all three devices are active and Phase II is <strong>Bloodied (175 HP or fewer) within its tether</strong>, a creature within 5 feet of the Nexus spends <strong>one Action</strong> to seal the manifestation and win. No second operator, check, or countdown.</p>
+<p>Reducing Phase II to 0 HP also wins. The greater entity’s fate and the Nightwalker’s survival remain <strong>To confirm</strong>.</p></section>
+<details id="gm-notes"><summary>GM notes &amp; continuity</summary>
+<p><strong>Lethality.</strong> Phase I’s Life Eater includes Negative Surge. Death Ward resolves before reaching 0 HP. Necrotic/Psychic resistance bypass applies to the matching lair damage, but not Immunity or the Regulator’s halving. Phase II has no Life Eater.</p>
+<p><strong>Environment.</strong> Keep the <a href="https://github.com/Graybark/Doldrum/blob/main/world/negative-plane.md">Negative Plane house rules</a>: in Death Heart, 1d6 Necrotic damage per minute without Death Ward, none with it. This environmental drain does not trigger Life Eater. Breathing protection remains necessary.</p>
+<p><strong>Balance.</strong> Untested: 550/350 HP, four independent resistances per phase. Lair actions increase pressure; permanent devices make sealing easier. Creature statistics are unchanged from the published revision 2.5.</p>
+<p><strong>Track:</strong> HP, four resistances, three Legendary Action uses, recharge, conditions, last lair action, two rifts, three device checkboxes.</p>
+<p><strong>Continuity.</strong> The <a href="https://github.com/Graybark/Doldrum/blob/main/planning/death-heart-after-the-nightwalker.md">Death Heart preparation</a> supplies the vault and Shar’s Favored. The <a href="https://github.com/Graybark/Doldrum/blob/main/sessions/summaries/2026-09-25-zzarakath-in-yaldas-clone.md">played Session 132 record</a> confirms the tuning fork’s creation, not its powers.</p>
+<p><strong>To confirm:</strong> the aberration’s identity, Shar’s possible betrayal, the Nightwalker’s agency and survival, machinery and fork powers, party readiness, planar origin, gravityless open-space movement, Entropic Rend’s recovery duration, and Grasp of the Void’s pull limit. Huge follows the published page; older Markdown headings differed.</p>
+<h3>Read-Aloud — Future Scenes</h3>
+<blockquote>Between broken conduits stands an enormous darkness. Behind its ribs, another shape moves a moment later than it should.</blockquote>
+<blockquote>The shape tears apart, but nothing falls. Your voices return from the opening, speaking words you have not said.</blockquote>
 </details></section>
-<footer><p>Doldrum · Revision 2.5 · 18 October 2026 · Unofficial homebrew. Unconfirmed campaign details are marked “To confirm.” This page is publicly accessible and contains GM spoilers.</p></footer>
+<footer><p>Doldrum · Revision 2.6 · 18 October 2026 · Unofficial homebrew · Publicly accessible GM spoilers; not a played recap.</p></footer>
 </main>
 </body>
 </html>
