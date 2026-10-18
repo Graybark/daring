@@ -1,0 +1,2 @@
+# Text extraction used by the existing campaign reference builder.
+pypdf==5.9.0
