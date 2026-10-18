@@ -25,12 +25,12 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Verify that source repository remains private
+      - name: Verify the approved publication repository
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          test "$(gh api repos/Graybark/daring --jq '.private == true')" = true
+          test "$(gh api repos/Graybark/daring --jq '.id == 1424158821 and .has_pages == true')" = true
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
@@ -44,11 +44,8 @@ jobs:
           python Codex/test_session_browser.py
           python Codex/build_pages.py
       - name: Commit only the regenerated offline document
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          test "$(gh api repos/Graybark/daring --jq '.private == true')" = true
           git add -- 'Daring Dozen/Sessions/index.html'
           if git diff --cached --quiet; then
             echo 'The offline archive is already up to date.'
@@ -77,27 +74,30 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Verify source privacy immediately before publication
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          test "$(gh api repos/Graybark/daring --jq '.private == true')" = true
       - name: Configure GitHub Pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
-        with:
-          enablement: true
       - name: Deploy the public browser
         id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
-      - name: Verify publication and repository privacy
+      - name: Verify the live archive
         env:
-          GH_TOKEN: ${{ github.token }}
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           set -euo pipefail
-          test "$(gh api repos/Graybark/daring --jq '.private == true')" = true
-          curl --fail --silent --show-error --retry 5 --retry-delay 5 --retry-all-errors "$PAGE_URL" -o /tmp/published-browser.html
+          curl --fail --silent --show-error --retry 8 --retry-delay 5 --retry-all-errors "$PAGE_URL" -o /tmp/published-browser.html
           grep -q 'id="session-data"' /tmp/published-browser.html
           grep -q 'noindex,nofollow,noarchive' /tmp/published-browser.html
-          printf 'Published browser: %s\nSource repository remains private; website is publicly accessible.\n' "$PAGE_URL" >> "$GITHUB_STEP_SUMMARY"
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+          page = Path('/tmp/published-browser.html').read_text(encoding='utf-8')
+          match = re.search(r'<script id="session-data" type="application/json">(.*?)</script>', page, re.S)
+          assert match, 'Missing embedded archive'
+          archive = json.loads(match[1])
+          numbers = [entry['number'] for entry in archive['sessions']]
+          assert 133 in numbers, 'Session 133 is missing from the published archive'
+          assert len(numbers) == len(set(numbers)), 'Duplicate sessions'
+          print(f"Live archive verified: {len(numbers)} sessions and {len(archive['lore'])} reference entries.")
+          PY
+          printf 'Published browser: %s\nThe repository and website are public, as approved by the owner.\n' "$PAGE_URL" >> "$GITHUB_STEP_SUMMARY"
