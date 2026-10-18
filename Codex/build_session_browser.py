@@ -309,7 +309,7 @@ def main() -> None:
         button.type = 'button'; button.setAttribute('aria-current', item === current ? 'page' : 'false');
         const heading = document.createElement('span'); heading.className = 'session-number'; heading.textContent = section === 'Sessions' ? `Session ${item.number}` : item.title;
         const title = document.createElement('span'); title.className = 'session-title'; title.textContent = section === 'Sessions' ? (item.title.replace(/^Daring Dozen\s*[—-]\s*Session\s*\d+\s*[—-]?\s*/, '') || item.teaser) : item.teaser;
-        const date = document.createElement('span'); date.className = 'session-date'; date.textContent = section === 'Sessions' ? item.date : (item.origin === 'onenote' ? `OneNote p. ${item.page}` : 'From sessions');
+        const date = document.createElement('span'); date.className = 'session-date'; date.textContent = section === 'Sessions' ? item.date : (item.origin === 'onenote' ? `OneNote p. ${item.page}` : item.origin === 'gm' ? 'GM preparation' : 'From sessions');
         button.append(heading, title, date); button.addEventListener('click', () => showRecord(item)); list.append(button);
       }
     }
@@ -324,7 +324,7 @@ def main() -> None:
       year.style.display = isSession ? '' : 'none';
       search.placeholder = isSession ? 'Search names, places, events…' : `Search ${section.toLowerCase()}…`;
       for (const button of categoryNav.children) { const active = button.dataset.section === section; button.classList.toggle('active', active); button.setAttribute('aria-current', active ? 'page' : 'false'); }
-      const source = document.getElementById('source-link'); source.href = isSession ? item.file : item.source; source.textContent = isSession ? 'Open session file ↗' : (item.origin === 'onenote' ? 'Open OneNote page ↗' : 'Open related session ↗');
+      const source = document.getElementById('source-link'); source.href = isSession ? item.file : item.source; source.textContent = isSession ? 'Open session file ↗' : (item.origin === 'onenote' ? 'Open OneNote page ↗' : item.origin === 'gm' ? 'Open GM character notes ↗' : 'Open related session ↗');
       document.querySelector('.footer').style.display = isSession ? '' : 'none';
       document.title = `${isSession ? `Session ${item.number}` : item.title} — Daring Dozen`;
       const position = isSession ? -1 : records[section].indexOf(item);

@@ -9,7 +9,7 @@ from pathlib import Path
 
 from pypdf import PdfReader
 
-from campaign_reference import CAMPAIGN
+from campaign_reference import CAMPAIGN, GM_CHARACTER_NOTES
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -147,6 +147,35 @@ def build_lore_data() -> list[dict[str, object]]:
                 "source": session_file(first_session),
                 "origin": "campaign",
             })
+    # Future-session portrayals remain distinct from session-derived campaign facts.
+    for title, notes in GM_CHARACTER_NOTES.items():
+        if ("Characters", title) in existing or any(
+            entry["category"] == "Characters" and entry["title"] == title for entry in entries
+        ):
+            raise ValueError(f"GM profile would replace an existing character entry: {title}")
+        fields = (
+            ("Appearance", notes["appearance"]),
+            ("Voice", notes["voice"]),
+            ("Mannerisms", notes["mannerisms"]),
+            ("Private GM goal", notes["gm_goal"]),
+            ("Example line", notes["example"]),
+        )
+        body = "\n".join(
+            f"<p><strong>{html.escape(label)}:</strong> {html.escape(value)}</p>"
+            for label, value in fields
+        )
+        entries.append({
+            "category": "Characters",
+            "title": title,
+            "id": f"gm-{slug(title)}",
+            "page": None,
+            "pages": [],
+            "html": f"<h1>{html.escape(title)}</h1>\n<p><strong>PRIVATE GM PREPARATION — not yet played.</strong></p>\n" + body,
+            "text": title + " " + " ".join(notes.values()),
+            "teaser": notes["appearance"][:130],
+            "source": "../../Codex/campaign_reference.py",
+            "origin": "gm",
+        })
     return entries
 
 

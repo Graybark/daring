@@ -397,3 +397,23 @@ CAMPAIGN: dict[tuple[str, str], list[Fact]] = {
 
 def facts_for(category: str, title: str) -> Iterable[Fact]:
     return CAMPAIGN.get((category, title), ())
+
+
+# PRIVATE GM PREPARATION. Roleplay portrayals and ambitions planned for Session 134.
+# Do not cite these as events played at the table or disclose them in player recaps.
+GM_CHARACTER_NOTES: dict[str, dict[str, str]] = {
+    "The Listener": {
+        "appearance": "A gaunt lich in dark robes, wearing an eyeless silver mask. Tuning forks protrude from his skeletal fingers and vibrate softly.",
+        "voice": "Soft, measured, almost a whisper; clinical, unnervingly calm, and rarely raised.",
+        "mannerisms": "Tilts his head as though hearing a distant sound; pauses mid-sentence; taps his forked fingers together for faint metallic chimes; studies others like specimens.",
+        "gm_goal": "Wants the party's power to subdue the Nightwalker without destroying the Unmoored Anchor, which he intends to control.",
+        "example": "Destroy the Nightwalker? How terribly unimaginative. Imagine what we might learn from it.",
+    },
+    "Morthakar, the Gilded Horn": {
+        "appearance": "A towering undead vampiric minotaur with dark, patchy fur over pale leathery skin, heavy armor, a broken horn repaired with gold, dull crimson eyes, and predatory fangs.",
+        "voice": "Deep, hollow, resonant, and authoritative; deliberately slow, never pausing for breath. Becomes quieter when angry.",
+        "mannerisms": "Holds perfectly still while listening, never blinks, fixes speakers with an unbroken stare, and taps one heavy finger when impatient.",
+        "gm_goal": "Wants the Nightwalker gone so he can restore order and regain full control of Death Heart; unlike the Listener, he has no interest in keeping the Unmoored Anchor.",
+        "example": "I have maintained peace among monsters for centuries. I will not allow one more to take my city from me.",
+    },
+}
