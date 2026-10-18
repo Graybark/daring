@@ -1,4 +1,4 @@
-# Private archive migration
+# Archive migration
 
 Copied the verified Doldrum campaign-browser snapshot into Graybark/daring.
 Imported 144 archive/source files, including sessions 1-133, all six reference categories,
@@ -20,13 +20,19 @@ No client-side password gate or noindex directive should be treated as access co
 
 ## Subsequent publication request — 18 October 2026
 
-The owner subsequently requested: "I don't think my players would find it. Just publish it there."
-The response explicitly clarified that anyone can open or guess the address, the website
-will be public, and all content already embedded in the browser will be publicly readable.
-The source repository must remain private.
+The owner subsequently requested public Pages publication. At that stage, the plan was
+for the source repository to remain private. A build/deployment workflow was added,
+staging only the complete HTML browser, favicon and .nojekyll. Separate PDFs, Markdown,
+Python code and separate GM-note files were excluded from the Pages artifact.
 
-A Pages build/deployment workflow was added for that request. It stages only the complete
-HTML browser, favicon and .nojekyll. Separate PDFs, Markdown, Python code and separate
-GM-note files are excluded from the public artifact. Source links lead to the private
-GitHub repository. Search-engine noindex tags are retained, without implying access control.
-See README.md and the latest Actions run for activation and deployment status.
+## Public repository approval — 18 October 2026
+
+The owner made Graybark/daring public while enabling Pages. After being informed that
+this also exposes the separate source documents and GM notes on GitHub, the owner
+confirmed that the visibility change was intentional and approved proceeding.
+
+The workflow's private-repository checks have therefore been removed. It remains scoped
+to Graybark/daring on main and publishes only the browser, favicon and .nojekyll. Source
+links point to this now-public repository. Search-engine noindex tags remain, without
+implying access control. Original Doldrum files and repository visibility were not changed.
+See README.md and the latest Actions run for the current deployment status.
