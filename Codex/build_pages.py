@@ -1,8 +1,7 @@
-"""Stage only the campaign browser for PUBLIC Pages.
+"""Stage the campaign browser and explicitly approved encounter for PUBLIC Pages.
 
-This is not authentication or a player-safe content filter. All content embedded
-in the browser is published. Separate PDFs, Markdown and GM files are not copied
-to Pages, but remain accessible in the owner-approved public source repository.
+This is not authentication or a player-safe content filter. Only the allowlisted
+website files are copied. The Doldrum repository is not read by this builder.
 """
 from __future__ import annotations
 
@@ -20,7 +19,8 @@ SOURCE = ROOT / BROWSER_DIR / 'index.html'
 OUTPUT = ROOT / '_site'
 REPOSITORY = 'https://github.com/Graybark/daring/blob/main/'
 DATA = re.compile(r'(<script id="session-data" type="application/json">)(.*?)(</script>)', re.S)
-ALLOWED = {'index.html', 'favicon.svg', '.nojekyll'}
+ENCOUNTER = ROOT / 'Codex/public/nightwalker.html'
+ALLOWED = {'index.html', 'favicon.svg', '.nojekyll', 'nightwalker.html'}
 
 
 def source_url(value: str) -> str:
@@ -77,20 +77,34 @@ def make_public_browser(source: str) -> str:
     return output
 
 
+def read_approved_encounter() -> str:
+    if ENCOUNTER.is_symlink() or not ENCOUNTER.is_file():
+        raise ValueError('Missing or unsafe approved encounter file')
+    page = ENCOUNTER.read_text(encoding='utf-8')
+    for marker in ('id="phase-i"', 'id="phase-ii"', 'id="lair-effects"', 'Life Eater.', 'noindex,nofollow,noarchive'):
+        if marker not in page:
+            raise ValueError(f'Encounter is missing required content: {marker}')
+    if re.search(r'gh[pousr]_[A-Za-z0-9]{25,}|github_pat_[A-Za-z0-9_]{20,}|[?&](?:token|sig|access_token)=', page):
+        raise ValueError('Possible credential in encounter output')
+    return page
+
+
 def main() -> None:
     source = SOURCE.read_text(encoding='utf-8')
     public = make_public_browser(source)
+    encounter = read_approved_encounter()
     OUTPUT.mkdir(exist_ok=True)
     if OUTPUT.is_symlink() or any(p.is_symlink() or not p.is_file() or p.name not in ALLOWED for p in OUTPUT.iterdir()):
         raise ValueError('_site contains unexpected files; refusing to publish it')
     (OUTPUT / 'index.html').write_text(public, encoding='utf-8')
     (OUTPUT / 'favicon.svg').write_bytes((ROOT / BROWSER_DIR / 'favicon.svg').read_bytes())
     (OUTPUT / '.nojekyll').write_text('', encoding='utf-8')
+    (OUTPUT / 'nightwalker.html').write_text(encounter, encoding='utf-8')
     if {p.name for p in OUTPUT.iterdir()} != ALLOWED:
         raise ValueError('Unexpected public artifact contents')
     archive = json.loads(DATA.search(public)[2])
     print(f"Staged PUBLIC browser: {len(archive['sessions'])} sessions, {len(archive['lore'])} reference entries.")
-    print('Pages artifact: .nojekyll, favicon.svg, index.html only. Separate source files remain accessible in the public repository.')
+    print('Pages artifact: ' + ', '.join(sorted(ALLOWED)))
 
 
 if __name__ == '__main__':
