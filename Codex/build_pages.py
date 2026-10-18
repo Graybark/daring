@@ -1,7 +1,8 @@
-"""Stage only the campaign browser for PUBLIC Pages; keep source files private.
+"""Stage only the campaign browser for PUBLIC Pages.
 
 This is not authentication or a player-safe content filter. All content embedded
-in the browser is published. Separate PDFs, Markdown and GM files are not copied.
+in the browser is published. Separate PDFs, Markdown and GM files are not copied
+to Pages, but remain accessible in the owner-approved public source repository.
 """
 from __future__ import annotations
 
@@ -23,7 +24,7 @@ ALLOWED = {'index.html', 'favicon.svg', '.nojekyll'}
 
 
 def source_url(value: str) -> str:
-    """Resolve a source link in the original browser to authenticated GitHub."""
+    """Resolve a source link in the original browser to its GitHub file."""
     value = html.unescape(value)
     if not value or value.startswith('#'):
         return value
@@ -89,7 +90,7 @@ def main() -> None:
         raise ValueError('Unexpected public artifact contents')
     archive = json.loads(DATA.search(public)[2])
     print(f"Staged PUBLIC browser: {len(archive['sessions'])} sessions, {len(archive['lore'])} reference entries.")
-    print('Public artifact: .nojekyll, favicon.svg, index.html only. Separate source files remain in the private repository.')
+    print('Pages artifact: .nojekyll, favicon.svg, index.html only. Separate source files remain accessible in the public repository.')
 
 
 if __name__ == '__main__':
