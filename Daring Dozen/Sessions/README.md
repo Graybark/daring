@@ -154,6 +154,7 @@ One file per numbered session. Sessions 1–129 transcribe the OneNote PDF archi
 - [Session 130](DaringDozen130.md) — 28 August 2026
 - [Session 131](DaringDozen131.md) — 4 September 2026
 - [Session 132](DaringDozen132_2026.09.25.md) — 25 September 2026
+- [Session 134 — Bargains in Death Heart](DaringDozen134.md) — Sunday, 18 October 2026
 
 ## Date to confirm
 
