@@ -20,7 +20,8 @@ OUTPUT = ROOT / '_site'
 REPOSITORY = 'https://github.com/Graybark/daring/blob/main/'
 DATA = re.compile(r'(<script id="session-data" type="application/json">)(.*?)(</script>)', re.S)
 ENCOUNTER = ROOT / 'Codex/public/nightwalker.html'
-ALLOWED = {'index.html', 'favicon.svg', '.nojekyll', 'nightwalker.html'}
+SURGES = ROOT / 'Codex/public/far-realm-surges.html'
+ALLOWED = {'index.html', 'favicon.svg', '.nojekyll', 'nightwalker.html', 'far-realm-surges.html'}
 
 
 def source_url(value: str) -> str:
@@ -89,10 +90,21 @@ def read_approved_encounter() -> str:
     return page
 
 
+def read_approved_surges() -> str:
+    if SURGES.is_symlink() or not SURGES.is_file():
+        raise ValueError('Missing or unsafe approved surge file')
+    page = SURGES.read_text(encoding='utf-8')
+    for marker in ('id="surge-table"', 'id="aberration-follower"', 'noindex,nofollow,noarchive'):
+        if marker not in page:
+            raise ValueError(f'Surge page is missing required content: {marker}')
+    return page
+
+
 def main() -> None:
     source = SOURCE.read_text(encoding='utf-8')
     public = make_public_browser(source)
     encounter = read_approved_encounter()
+    surges = read_approved_surges()
     OUTPUT.mkdir(exist_ok=True)
     if OUTPUT.is_symlink() or any(p.is_symlink() or not p.is_file() or p.name not in ALLOWED for p in OUTPUT.iterdir()):
         raise ValueError('_site contains unexpected files; refusing to publish it')
@@ -100,6 +112,7 @@ def main() -> None:
     (OUTPUT / 'favicon.svg').write_bytes((ROOT / BROWSER_DIR / 'favicon.svg').read_bytes())
     (OUTPUT / '.nojekyll').write_text('', encoding='utf-8')
     (OUTPUT / 'nightwalker.html').write_text(encounter, encoding='utf-8')
+    (OUTPUT / 'far-realm-surges.html').write_text(surges, encoding='utf-8')
     if {p.name for p in OUTPUT.iterdir()} != ALLOWED:
         raise ValueError('Unexpected public artifact contents')
     archive = json.loads(DATA.search(public)[2])
