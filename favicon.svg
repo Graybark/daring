@@ -1,6 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Daring Dozen d12">
-  <rect width="64" height="64" rx="14" fill="#174b45"/>
-  <path d="M32 7 55 24 46 53H18L9 24Z" fill="#cfaa63"/>
-  <path d="M32 13 49 26 42 47H22L15 26Z" fill="#fffdfa"/>
-  <text x="32" y="39" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="700" letter-spacing="-2" fill="#174b45">12</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Daring Dozen d20">
+  <title>Daring Dozen — twenty-sided die</title>
+  <path d="M32 3 58 17v30L32 61 6 47V17Z" fill="#f7fbff"/>
+  <path d="m32 3 15 20 11-6Z M6 17l11 6L32 3Z" fill="#e3f0fa"/>
+  <path d="m6 47 26 5 26-5-26 14Z" fill="#d8eaf6"/>
+  <g fill="none" stroke="#1c6492" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 3 58 17v30L32 61 6 47V17Z"/>
+    <path d="M32 3 17 23l15 29 15-29ZM6 17l11 6L6 47l26 5 26-5-11-24 11-6M32 52v9"/>
+  </g>
+  <g fill="#1c6492">
+    <path d="m32 29 3 5-3 5-3-5Z"/>
+    <circle cx="32" cy="15" r="1.5"/>
+    <circle cx="16" cy="41" r="1.5"/>
+    <circle cx="48" cy="41" r="1.5"/>
+  </g>
 </svg>
