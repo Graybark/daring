@@ -154,11 +154,12 @@ html:not(.enhanced) .item-detail:has(>.magic-item-card:target)>.magic-item-card:
 html:not(.enhanced) .rules-section:target,
 html:not(.enhanced) .rules-section:has(:target),
 html.enhanced[data-view=skills] #skills,
-html.enhanced[data-view=rogue] #rogue{display:block}
+html.enhanced[data-view=rogue] #rogue,
+html.enhanced[data-view=wizard] #wizard{display:block}
 html:not(.enhanced):has(.rules-section:target,.rules-section :target) .toolbar,
 html:not(.enhanced):has(.rules-section:target,.rules-section :target) .reader-layout,
-html.enhanced:is([data-view=skills],[data-view=rogue]) .toolbar,
-html.enhanced:is([data-view=skills],[data-view=rogue]) .reader-layout{display:none}
+html.enhanced:is([data-view=skills],[data-view=rogue],[data-view=wizard]) .toolbar,
+html.enhanced:is([data-view=skills],[data-view=rogue],[data-view=wizard]) .reader-layout{display:none}
 .rules-content{padding-block:24px 8px}
 .rule-group+.rule-group{margin-top:32px}
 .rule-group>h3{margin:0 0 16px;font:700 27px/1.25 Georgia,serif;letter-spacing:-.02em;color:#19395d}
