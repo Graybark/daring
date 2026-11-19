@@ -70,7 +70,7 @@ jobs:
               raise SystemExit('Embedded source paths were not removed')
           spellwright = private / 'spellwright'
           spell_files = {
-              'index.html', 'attribution.html', 'rogue.html', 'favicon.svg',
+              'index.html', 'attribution.html', 'favicon.svg',
               'abjuration.svg', 'conjuration.svg', 'divination.svg', 'enchantment.svg',
               'evocation.svg', 'illusion.svg', 'necromancy.svg', 'transmutation.svg',
           }
@@ -85,8 +85,8 @@ jobs:
               if path.is_symlink() or not path.is_file() or b'github.com/Graybark/Doldrum' in path.read_bytes():
                   raise SystemExit('Unsafe Spellwright release file: ' + name)
           spell_page = (spellwright / 'index.html').read_text(encoding='utf-8')
-          if '<title>Spellwright' not in spell_page or 'id="skills-heading"' not in spell_page:
-              raise SystemExit('Missing Spellwright reference or Skills section')
+          if '<title>Spellwright' not in spell_page or any(f'id="{name}-heading"' not in spell_page for name in ('skills', 'rogue')):
+              raise SystemExit('Missing Spellwright reference, Skills or Rogue section')
           for name in assets:
               version = hashlib.sha256((spellwright / 'assets' / name).read_bytes()).hexdigest()[:12]
               if f'"assets/{name}?v={version}"' not in spell_page:
@@ -98,6 +98,12 @@ jobs:
               if folder.is_symlink():
                   raise SystemExit('Unsafe Spellwright target directory')
               folder.mkdir(exist_ok=True)
+              if folder == pathlib.Path('spellwright'):
+                  legacy = folder / 'rogue.html'
+                  if legacy.is_symlink() or (legacy.exists() and not legacy.is_file()):
+                      raise SystemExit('Unsafe obsolete Rogue target')
+                  if legacy.exists():
+                      legacy.unlink()
               if not {p.name for p in folder.iterdir()} <= allowed:
                   raise SystemExit('Unexpected files in the public Spellwright directory')
           for name in required | spell_paths:
@@ -164,4 +170,5 @@ jobs:
           ! grep -q 'id="source-link"' /tmp/live-daring.html
           curl --fail --silent --show-error --retry 8 --retry-delay 5 --retry-all-errors "${PAGE_URL%/}/spellwright/" > /tmp/live-spellwright.html
           grep -q 'id="skills-heading"' /tmp/live-spellwright.html
+          grep -q 'id="rogue-heading"' /tmp/live-spellwright.html
           ! grep -qi 'github.com/Graybark/Doldrum' /tmp/live-spellwright.html
