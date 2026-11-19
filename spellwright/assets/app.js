@@ -40,8 +40,12 @@
   });
   let active = null, searchTimer;
   const isHouse = () => controls['house-rules-toggle'].checked;
-  const skills = doc.getElementById('skills');
-  const extraSections = new Map([['#spell-slots', ['slots', slots]], ['#skills', ['skills', skills]]]);
+  const extraSections = new Map([['#spell-slots', ['slots', slots]]]);
+  doc.querySelectorAll('.rules-section').forEach(section => {
+    const view = section.id;
+    extraSections.set('#' + view, [view, section]);
+    section.querySelectorAll('[id]').forEach(target => extraSections.set('#' + target.id, [view, section]));
+  });
   // Keep the existing reader, filters and phone-menu preference intact when switching views.
   const isItemView=()=>location.hash==='#magic-items'||location.hash.startsWith('#item-');
   const isSpellView = () => !extraSections.has(location.hash) && !isItemView();
@@ -49,15 +53,18 @@
     doc.dispatchEvent(new Event('spellwright:navigate'));
     const [view, section] = extraSections.get(location.hash) ?? [isItemView() ? 'items' : 'spells'];
     doc.documentElement.dataset.view = view;
-    const activeHref = section ? location.hash : view === 'items' ? '#magic-items' : '#spells';
+    const activeHref = section ? '#' + section.id : view === 'items' ? '#magic-items' : '#spells';
     doc.querySelectorAll('.section-nav a').forEach(link => {
       const selected = link.getAttribute('href') === activeHref;
       if (selected) link.setAttribute('aria-current','page'); else link.removeAttribute('aria-current');
     });
     setOffsets();
     if (navigate && section) {
-      section.querySelector('h2').focus({preventScroll:true});
-      section.scrollIntoView({block:'start'});
+      const fragment = doc.getElementById(location.hash.slice(1));
+      const target = fragment && section.contains(fragment) ? fragment : section;
+      const heading = target.matches('h2,h3,h4') ? target : target.querySelector('h2,h3,h4');
+      heading?.focus({preventScroll:true});
+      target.scrollIntoView({block:'start'});
     }
   }
   function setURL(push = false, hash) {
@@ -438,3 +445,4 @@
   window.addEventListener('resize', hideConditionTip);
   hoverAvailable.addEventListener('change', hideConditionTip);
 })();
+
